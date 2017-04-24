@@ -5,7 +5,7 @@ needed to move the robot from one position to another.
 For detailed description of each version, see README file in each version's
 folder.
 
-## Something Distinguised in my Programs
+## Something Distinguised about my Programs
 
 ### Version 1
 I used javafx to build a GUI application. This is a comparatively easier version, but one thing I want you to notice is that to build it, I actually learned JavaFX from scratch. The reason is that when I studied java GUI, my professor taught me S
