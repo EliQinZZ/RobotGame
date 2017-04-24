@@ -41,6 +41,36 @@ Note that once you try to move beyond the boundary, the program will complain
 with a error message. Don't be afraid, becuase you can eliminate the error
 message by pressing any key on your keyboard.
 
+## Example Abnormal Output
+```
+$ java RobotGame 
+Too few arguments
+
+Usage: RobotGame originX originY originDirection
+    originX -- an integer representing the X coordinate of robot's 
+               original position.
+               Must be within the limits of [1-8]
+    originY -- an integer representing the Y coordinate of robot's 
+               original position.
+               Must be within the limits of [1-8]
+    originDirection -- a character representing the original facing 
+                       of the robot.
+```
+```
+$ java RobotGame 3 3 Mobivity
+Input "Mobivity" is not a valid direction
+
+Usage: RobotGame originX originY originDirection
+    originX -- an integer representing the X coordinate of robot's 
+               original position.
+               Must be within the limits of [1-8]
+    originY -- an integer representing the Y coordinate of robot's 
+               original position.
+               Must be within the limits of [1-8]
+    originDirection -- a character representing the original facing 
+                       of the robot.
+```
+
 ## Author
 Zhizhen (Eli) Qin<br />
 Email: EliQinZZ1997@gmail.com
