@@ -6,5 +6,5 @@ For detailed description of each version, see README file in each version's
 folder.
 
 ## Author
-Zhizhen (Eli) Qin
+Zhizhen (Eli) Qin<br />
 Email: EliQinZZ1997@gmail.com
