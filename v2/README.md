@@ -84,7 +84,7 @@ targetDirection
     targetDirection -- a character representing the target facing of the
                        robot.
                        Must be N, E, S or W (for North, East, South and
-                       West, respectively.
+                       West, respectively).
 ```
 
 ## Author

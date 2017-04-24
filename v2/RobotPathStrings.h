@@ -36,7 +36,7 @@
 "    targetDirection -- a character representing the target facing of the\n"\
 "                       robot.\n"\
 "                       Must be N, E, S or W (for North, East, South and\n"\
-"                       West, respectively.\n"
+"                       West, respectively).\n"
 
 
 #endif // ROBOT_PATH_STRINGS_H

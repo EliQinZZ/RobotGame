@@ -20,114 +20,114 @@ import java.lang.Integer;
  */
 public class RobotGame extends Application
 {
-  private final double SCENE_WIDTH = 500;				// Width of the scene
-  private final double SCENE_HEIGHT = 600;			// Height of the scene
+  private final double SCENE_WIDTH = 500;       // Width of the scene
+  private final double SCENE_HEIGHT = 600;      // Height of the scene
 
-  private final int BOARD_SIZE = 8;							//Size of the board
+  private final int BOARD_SIZE = 8;             //Size of the board
 
-	// Color constants
+  // Color constants
   private final Color RECT_COLOR = Color.rgb(0x44, 0x27, 0x16);
   private final Color ROBOT_COLOR = Color.rgb(0xDC, 0xD9, 0xE2);
   private final Color ERR_RECT_COLOR = Color.rgb(255, 255, 255, 0.7);
 
-	// Font family constant
+  // Font family constant
   private final String FNT_FAMILY = "Times New Roman";
 
-	// Font size constants
+  // Font size constants
   private final int TITLE_FNT_SIZE = 35;
   private final int STATUS_FNT_SIZE = 23;
   private final int INSTR_FNT_SIZE = 16;
   private final int ERR_1_FNT_SIZE = 32;
   private final int ERR_2_FNT_SIZE = 20;
 
-	// Size for unit square
-	private final int UNIT_SIZE = 50;
+  // Size for unit square
+  private final int UNIT_SIZE = 50;
 
-	// Expected arguments
-	private static final int EXPECTED_ARGS = 3;
+  // Expected arguments
+  private static final int EXPECTED_ARGS = 3;
   
-  GridPane mainGrid;			// The main grid pane to layout components
-  StackPane mainStack;		// The main stack pane to layer components
-  Scene scene;						// Primary scene
-  Text robotStatusText;		// Text label indication current robot status
-  Rectangle errRect;			// Rectangle to hold error messages
-  VBox errTexts;					// Error meesages
+  GridPane mainGrid;      // The main grid pane to layout components
+  StackPane mainStack;    // The main stack pane to layer components
+  Scene scene;            // Primary scene
+  Text robotStatusText;   // Text label indication current robot status
+  Rectangle errRect;      // Rectangle to hold error messages
+  VBox errTexts;          // Error meesages
 
-	// The board for robot to play on
+  // The board for robot to play on
   Rectangle[][] rects = new Rectangle[BOARD_SIZE][BOARD_SIZE];
   ImageView[][] robotImages = new ImageView[BOARD_SIZE][BOARD_SIZE];
   
-  private Robot robot;											// Our robot
-  private static int initialX;							// Initial X location
-  private static int initialY;							// Initial Y location
+  private Robot robot;                      // Our robot
+  private static int initialX;              // Initial X location
+  private static int initialY;              // Initial Y location
   private static Direction initialDirection;// Initial facing direction
 
-  private boolean errDisplaying = false;		// Whether error messages are 
-																						// displaying
+  private boolean errDisplaying = false;    // Whether error messages are 
+                                            // displaying
 
 
-	/**
-	 * Start the GUI interface
-	 *
-	 * @param primaryStage the primary stage for GUI
-	 */
+  /**
+   * Start the GUI interface
+   *
+   * @param primaryStage the primary stage for GUI
+   */
   @Override
   public void start(Stage primaryStage) {
     // Create the robot based on the user inputs
     robot = new Robot(initialX, initialY, initialDirection);
-		
-		// Set up stage
+    
+    // Set up stage
     primaryStage.setTitle("Robot Game");
     primaryStage.setMinWidth(SCENE_WIDTH);
     primaryStage.setMinHeight(SCENE_HEIGHT);
     primaryStage.setResizable(false);
-		
-		// Build the whole game board
+    
+    // Build the whole game board
     buildGameBoard();
-		
-		// Add the built scene onto the stage
+    
+    // Add the built scene onto the stage
     primaryStage.setScene(scene);
     primaryStage.show();
 
-		// Handle keyboard events
+    // Handle keyboard events
     handleKeyEvent();
   }
 
-	/**
-	 * Handle keyboard events
-	 */
+  /**
+   * Handle keyboard events
+   */
   private void handleKeyEvent() {
     scene.setOnKeyPressed(e ->{
-			// If error messages are displaying, hide them
+      // If error messages are displaying, hide them
       if(errDisplaying) {
         hideError();
         return;
       }
-			
-			// Perform actions based on different keys pressed
+      
+      // Perform actions based on different keys pressed
       switch(e.getCode()) {
-			// Move the robot when M is pressed
+      // Move the robot when M is pressed
       case M:
         boolean success = robot.move();
 
-				// If the move is unsuccessful, display the error messages
+        // If the move is unsuccessful, display the error messages
         if(!success) {
           displayError();
         }
 
-				// If the move is successful, update game board to reflect the change
+        // If the move is successful, update game board to reflect the change
         else {
           updateBoard();
         }
         break;
       
-			// Turn the robot to face left upon L pressed
+      // Turn the robot to face left upon L pressed
       case L:
         robot.turnLeft();
         updateBoard();
         break;
 
-			// Turn the robot to face left upon R pressed
+      // Turn the robot to face left upon R pressed
       case R:
         robot.turnRight();
         updateBoard();
@@ -139,18 +139,18 @@ public class RobotGame extends Application
     });
   }
   
-	/**
-	 * Display the error messages
-	 */
+  /**
+   * Display the error messages
+   */
   private void displayError() {
     errRect.setVisible(true);
     errTexts.setVisible(true);
     errDisplaying = true;
   }
 
-	/**
-	 * Hide the error messages
-	 */
+  /**
+   * Hide the error messages
+   */
   private void hideError() {
     errRect.setVisible(false);
     errTexts.setVisible(false);
@@ -158,18 +158,18 @@ public class RobotGame extends Application
   }
 
 
-	/**
-	 * Build the game board upon first launch
-	 */
+  /**
+   * Build the game board upon first launch
+   */
   private void buildGameBoard() {
-		// Create main grid and main stack to hold components
-		mainGrid = new GridPane();
+    // Create main grid and main stack to hold components
+    mainGrid = new GridPane();
     mainStack = new StackPane();
 
-		// Add the grid onto the stack
+    // Add the grid onto the stack
     mainStack.getChildren().add(mainGrid);  
 
-		// Style the main grid	
+    // Style the main grid  
     mainGrid.setAlignment(Pos.CENTER);
     mainGrid.setPadding(new Insets(0));
     mainGrid.setStyle("-fx-background-color: rgb(236, 203, 168)");
@@ -177,12 +177,12 @@ public class RobotGame extends Application
     mainGrid.setHgap(0);
     mainGrid.setVgap(0);
 
-		// Title text
+    // Title text
     Text titleText = new Text("Robot Game");
     titleText.setFont(Font.font(FNT_FAMILY, FontWeight.BOLD, TITLE_FNT_SIZE));
     mainGrid.add(titleText, 0, 0, 8, 1);
 
-		// Instruction texts
+    // Instruction texts
     Text instrTitle = new Text("Keyboard Operations:");
     Text instrM = new Text("M: Move forward.");
     Text instrL = new Text("L: Turn to face left.");
@@ -193,21 +193,21 @@ public class RobotGame extends Application
     instrM.setFont(Font.font(FNT_FAMILY, FontWeight.BLACK, INSTR_FNT_SIZE));
     instrL.setFont(Font.font(FNT_FAMILY, FontWeight.BLACK, INSTR_FNT_SIZE));
     instrR.setFont(Font.font(FNT_FAMILY, FontWeight.BLACK, INSTR_FNT_SIZE));
-		
-		// Add the instructions onto the grid pane
-		mainGrid.add(instrTitle, 0, 9, 4, 1);
+    
+    // Add the instructions onto the grid pane
+    mainGrid.add(instrTitle, 0, 9, 4, 1);
     mainGrid.add(instrM, 0, 10, 4, 1);
     mainGrid.add(instrL, 0, 11, 4, 1);
     mainGrid.add(instrR, 0, 12, 4, 1);
 
-		// Robot status texts
+    // Robot status texts
     robotStatusText = new Text("Robot: " + robot.toString());
     robotStatusText.setFont(Font.font(FNT_FAMILY, FontWeight.BOLD, 
                                       STATUS_FNT_SIZE));
     robotStatusText.setTextAlignment(TextAlignment.RIGHT);
     mainGrid.add(robotStatusText, 3, 9, 5, 4);
 
-		// Construct error messages
+    // Construct error messages
     errRect = new Rectangle(SCENE_WIDTH, SCENE_HEIGHT);
     errTexts = new VBox();
     errTexts.setSpacing(30);
@@ -217,24 +217,24 @@ public class RobotGame extends Application
     errText1.setFont(Font.font(FNT_FAMILY, FontWeight.BOLD, ERR_1_FNT_SIZE));
     errText2.setFont(Font.font(FNT_FAMILY, FontWeight.BOLD, ERR_2_FNT_SIZE));
 
-		// Add error messages into the vBox
+    // Add error messages into the vBox
     errTexts.getChildren().addAll(errText1, errText2);
     errTexts.setAlignment(Pos.CENTER);
 
     errRect.setFill(ERR_RECT_COLOR);
-		
-		// Hide the error messages in the beginning
+    
+    // Hide the error messages in the beginning
     errRect.setVisible(false);
     errTexts.setVisible(false);
     
-		// Add error messages onto the stack
+    // Add error messages onto the stack
     mainStack.getChildren().addAll(errRect, errTexts);
 
-		// Create the table for robot to live
+    // Create the table for robot to live
     for(int j = 0; j < BOARD_SIZE; ++j) {
       for(int i = 0; i < BOARD_SIZE; ++i) {
         
-				// Stack for a unit square
+        // Stack for a unit square
         StackPane unitStack = new StackPane();
 
         Rectangle rect = new Rectangle();
@@ -255,14 +255,14 @@ public class RobotGame extends Application
         unitStack.getChildren().addAll(rect, robotImage);
         StackPane.setMargin(robotImage, new Insets(1));
 
-				// Put the robot onto the table
+        // Put the robot onto the table
         if(i == robot.getX() - 1 && j == 8 - robot.getY()) {
           rect.setFill(ROBOT_COLOR);
           robotImage.setVisible(true);
           setImageFacing(robotImage, robot.getDirection());
         }
-				
-				// Add the unit onto the main grid
+        
+        // Add the unit onto the main grid
         mainGrid.add(unitStack, i, j + 1);
 
         rects[i][j] = rect;
@@ -271,15 +271,15 @@ public class RobotGame extends Application
       }
     }
 
-		// Add the main stack onto the scene
+    // Add the main stack onto the scene
     scene = new Scene(mainStack);
   }
 
-	/**
-	 * Update the gameboard for every valid action
-	 */
+  /**
+   * Update the gameboard for every valid action
+   */
   private void updateBoard() {
-		// Update each cell of the board
+    // Update each cell of the board
     for(int j = 0; j < BOARD_SIZE; ++j) {
       for(int i = 0; i < BOARD_SIZE; ++i) {
         if(i == robot.getX() - 1 && j == 8 - robot.getY()) {
@@ -294,16 +294,16 @@ public class RobotGame extends Application
       }
     }
 
-		// Update robot status text
+    // Update robot status text
     robotStatusText.setText("Robot: " + robot.toString());
   }
   
-	/**
-	 * Set the rotation of robot image according to the facing of the robot
-	 *
-	 * @param robotImage the image of the robot
-	 * @param direction the direction that the robot is facing
-	 */
+  /**
+   * Set the rotation of robot image according to the facing of the robot
+   *
+   * @param robotImage the image of the robot
+   * @param direction the direction that the robot is facing
+   */
   private void setImageFacing(ImageView robotImage, Direction direction) {
     int rotateAngle = 0;
     switch(direction) {
@@ -321,19 +321,19 @@ public class RobotGame extends Application
         break;
     }
     
-		// Rotate the image based on the facing of the robot
+    // Rotate the image based on the facing of the robot
     robotImage.setRotate(rotateAngle);
 
   }
 
   /**
-	 * Main function to process user input
-	 *
-	 * @param args user input arguments
-	 */
+   * Main function to process user input
+   *
+   * @param args user input arguments
+   */
   public static void main(String[] args) {
 
-		// Check the number of the arguments
+    // Check the number of the arguments
     if(args.length < EXPECTED_ARGS) {
       System.err.println("Too few arguments");
       printUsage();
@@ -346,26 +346,26 @@ public class RobotGame extends Application
       System.exit(-1);
     }
 
-		// Convert the arguments to numbers
+    // Convert the arguments to numbers
     initialX = convertToInt(args[0]);
     initialY = convertToInt(args[1]);
 
-		// Check the range of the numbers
+    // Check the range of the numbers
     checkBounds(initialX);
     checkBounds(initialY);
-		
-		// Convert the argument to direction
+    
+    // Convert the argument to direction
     initialDirection = parseDirection(args[2]);
       
     Application.launch(args);
   }
 
-	/**
-	 * Convert a string to an integer
-	 *
-	 * @param arg the string to be converted
-	 * @return the converted integer
-	 */
+  /**
+   * Convert a string to an integer
+   *
+   * @param arg the string to be converted
+   * @return the converted integer
+   */
   private static int convertToInt(String arg) {
     int intValue = -1;
     try {
@@ -387,11 +387,11 @@ public class RobotGame extends Application
     return intValue;
   }
 
-	/**
-	 * Check whether the number is in bounds
-	 *
-	 * @param value the number to be checked
-	 */
+  /**
+   * Check whether the number is in bounds
+   *
+   * @param value the number to be checked
+   */
   private static void checkBounds(int value) {
     if(value < 1 || value > 8) {
       System.err.println("Input \"" + value + "\" is not in bound [1, 8]");
@@ -400,12 +400,12 @@ public class RobotGame extends Application
     }
   }
 
-	/**
-	 * Convert a string to a direction
-	 *
-	 * @param arg the string to be converted
-	 * @return the converted direction
-	 */
+  /**
+   * Convert a string to a direction
+   *
+   * @param arg the string to be converted
+   * @return the converted direction
+   */
   private static Direction parseDirection(String sDirection) {
     if(sDirection.length() != 1) {
       System.err.println("Input \"" + sDirection + "\" is not a " +
@@ -431,10 +431,10 @@ public class RobotGame extends Application
     
     return null;
   }
-	
-	/**
-	 * Print usage when the user input is not correct
-	 */
+  
+  /**
+   * Print usage when the user input is not correct
+   */
   private static void printUsage() {
     System.err.println(
       "\nUsage: RobotGame originX originY originDirection\n" +
@@ -445,6 +445,8 @@ public class RobotGame extends Application
       "               original position.\n" +
       "               Must be within the limits of [1-8]\n" +
       "    originDirection -- a character representing the original facing \n" +
-      "                       of the robot.\n");
+      "                       of the robot.\n" +
+      "                       Must be N, E, S or W (for North, East, South \n" +
+      "                       and West, respectively).\n");
   }
 }

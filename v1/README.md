@@ -55,6 +55,8 @@ Usage: RobotGame originX originY originDirection
                Must be within the limits of [1-8]
     originDirection -- a character representing the original facing 
                        of the robot.
+                       Must be N, E, S or W (for North, East, South 
+                       and West, respectively).
 ```
 ```
 $ java RobotGame 3 3 Mobivity
@@ -69,6 +71,8 @@ Usage: RobotGame originX originY originDirection
                Must be within the limits of [1-8]
     originDirection -- a character representing the original facing 
                        of the robot.
+                       Must be N, E, S or W (for North, East, South 
+                       and West, respectively).
 ```
 
 ## Author
