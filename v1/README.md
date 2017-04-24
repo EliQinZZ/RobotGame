@@ -42,5 +42,5 @@ with a error message. Don't be afraid, becuase you can eliminate the error
 message by pressing any key on your keyboard.
 
 ## Author
-Zhizhen (Eli) Qin
+Zhizhen (Eli) Qin<br />
 Email: EliQinZZ1997@gmail.com
