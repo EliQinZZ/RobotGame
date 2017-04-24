@@ -1,3 +1,8 @@
+/**
+ * File Name: RobotPathStrings.h
+ * Description: This file contains all the strings needed for the driver
+ * Author: Zhizhen (Eli) Qin
+ */
 #ifndef ROBOT_PATH_STRINGS_H
 #define ROBOT_PATH_STRINGS_H
 

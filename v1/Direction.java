@@ -1,42 +1,47 @@
-//------------------------------------------------------------------//
-// Direction.java                                                   //
-//                                                                  //
-// Enumeration Type used to represent a Movement Direction          //
-//  Each Direction object includes the vector of Direction          //
-//                                                                  //
-// Author:  Ujjwal Gulecha		                            //
-// Date:    10/12/16                                                //
-//------------------------------------------------------------------//
-
 /**
- * DO NOT MODIFY THIS FILE
+ * File Name: Direction.java
+ * Description: This is the direction class used to describe the facing of the
+ * 							robot.
+ * Author: Zhizhen (Eli) Qin
  */
 
 public enum Direction {
-    // The Definitions for UP, DOWN, LEFT, and RIGHT
+    // Enumaration for North, South, West and East 
     NORTH(0, 1), SOUTH(0, -1), WEST(-1, 0), EAST(1, 0);
 
-    private final int y;
-    private final int x;
-
+    private int x;  // The horizontal direction
+    private int y;	// The vertical direction
+		
+		/**
+		 * The constructor of the direction
+		 *
+		 * @param x the horizontal direction
+		 * @param y the vertical direction
+		 */
     Direction(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    // Retrieve the X component of direction
+    /**
+		 * Getter for instance variable x
+		 *
+		 * @return the horizontal direction
+		 */
     public int getX() {
         return x;
     }
 
-    // Retrieve the Y component of direction
+		/**
+		 * Getter for instance variable y
+		 *
+		 * @return the vertical direction
+		 */
     public int getY() {
         return y;
     }
 
-    @Override
     public String toString() {
         return name() + "(" + x + ", " + y + ")";
     }
-
 }
