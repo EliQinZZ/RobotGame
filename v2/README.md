@@ -37,6 +37,6 @@ to move the robot from one position to another, and displays all the sequences
 of instructions that matches the calculated number.
 
 ## Author
-Zhizhen (Eli) Qin
+Zhizhen (Eli) Qin<br />
 Email: EliQinZZ1997@gmail.com
 
