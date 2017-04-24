@@ -1,0 +1,6 @@
+*.swp
+*.class
+*.o
+*.gch
+core
+a.out
